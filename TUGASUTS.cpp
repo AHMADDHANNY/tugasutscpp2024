@@ -10,15 +10,13 @@ int main() {
     char lagi;
 
     do {
-    	cout << setprecision(12);
-    	cout << "                                        <-------! PUNYA DHANNEYY !-------> :D" << endl;
-		cout << "!------------------------------------------!" << endl << endl;
-		
-		//UNTUK INPUT YA PAK
+        cout << setprecision(12);
+        cout << "                                        <-------! PUNYA DHANNEYY !-------> :D" << endl;
+        cout << "!------------------------------------------!" << endl << endl;
+        
+        //UNTUK INPUT YA PAK
         cout << "Masukkan Nama Mahasiswa: ";
-        getline(cin, namaMhs);/*SAYA MENGGUNAKAN GETLINE KARENA PADA SAAT MEMASUKAN NAMA LENGKAP
-								DENGAN SPASI DAN KETIKA SAYA INGIN MELANJUTKAN INPUT KE
-								NPM TETAPI DIA AKAN LANGSUNG MASUK INPUT KE KODE, SEMENTARA NPM DI LEWATKAN*/
+        getline(cin, namaMhs);
 
         cout << "Masukkan NPM: ";
         cin >> NPM;
@@ -26,11 +24,7 @@ int main() {
         cout << "Masukkan Kode (SI/TI/KA/MI): ";
         cin >> kodeMhs;
 
-        cout << "Masukkan Pembayaran ke: ";
-        cin >> pembayaranKe;
-        cout<<endl<<"*------------------------------------------*"<<endl<<endl;
-        
-        //LOGIKA UNTUK MENCARI JURUSAN,PEMBAYARAN AWAL, JUMLAH CICILAN, DAN BESAR CICILAN YANG DI INPUT DARI KODE :)_
+        // LOGIKA UNTUK MENCARI JURUSAN, PEMBAYARAN AWAL, JUMLAH CICILAN, DAN BESAR CICILAN
         if (kodeMhs == "SI" || kodeMhs == "si" || kodeMhs == "Si" || kodeMhs == "sI") {
             jurusan = "Sistem Informasi";
             pembayaranAwal = 2100000;
@@ -56,7 +50,18 @@ int main() {
             continue;
         }
 
-		//ARITMATIKA UNTUK MENCARI SISA UANG KULIAH, UANG KULIAH TERBAYAR, DAN JUMLAH UANG KULIAH YANG HARUS DI BAYAR PAK:)
+        // INPUT PEMBAYARAN KE DENGAN MAKSIMAL JUMLAH CICILAN
+        do {
+            cout << "Masukkan Pembayaran ke (maksimum " << jumlahCicilan << "): ";
+            cin >> pembayaranKe;
+
+            if (pembayaranKe > jumlahCicilan) {
+                cout << "Pembayaran ke tidak boleh lebih dari " << jumlahCicilan << "! Silakan input lagi." << endl;
+            }
+        } while (pembayaranKe > jumlahCicilan);
+        cout << endl << "*------------------------------------------*" << endl << endl;
+
+        // ARITMATIKA UNTUK MENCARI UANG KULIAH, UANG KULIAH TERBAYAR, DAN SISA UANG KULIAH
         uangKuliah = pembayaranAwal + (jumlahCicilan * besarCicilan);
         uangKuliahTerbayar = pembayaranAwal + (pembayaranKe * besarCicilan);
         sisaUangKuliah = uangKuliah - uangKuliahTerbayar;
@@ -80,12 +85,9 @@ int main() {
 
         cout << "Masih Ingin Menghitung [Y/N]: ";
         cin >> lagi;
-        cin.ignore();/*AGAR TIDAK TERJADI ERROR SEPERTI INPUT SEBELUMNYA, JIKA TIDAK MENGGUNAKAN INI
-									MAKA INPUT NAMA AKAN DI LEWATKAN OTOMATIS*/
-									
+        cin.ignore(); // Agar input tidak dilewatkan
+
     } while (lagi == 'y' || lagi == 'Y');
 
     return 0;
 }
-
-										/* TERIMA KASIH :) */
