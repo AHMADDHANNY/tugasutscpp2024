@@ -3,45 +3,43 @@
 using namespace std;
 
 int main() {
-    string namaMhs, NPM, kodeMhs, jurusan;
-    int pembayaranKe, jumlahCicilan = 0;
-    float pembayaranAwal = 0, besarCicilan = 0;
-    float uangKuliah, uangKuliahTerbayar, sisaUangKuliah;
-    char lagi;
+    const int maxMahasiswa = 10;
+    string namaMahasiswa[maxMahasiswa], npm, kode, jurusan[maxMahasiswa];
+    int pembayaranAwal, jumlahCicilan, besarCicilan;
+    int pembayaranKe, uangKuliah[maxMahasiswa], uangKuliahTerbayar[maxMahasiswa], sisaUangKuliah[maxMahasiswa];
+    int jlhMhs = 0;
+    char lanjut;
 
+        cout << "                                        <-------! PUNYA DHANNEYY !-------> :D" << endl;
     do {
         cout << setprecision(12);
-        cout << "                                        <-------! PUNYA DHANNEYY !-------> :D" << endl;
         cout << "!------------------------------------------!" << endl << endl;
-        
-        //UNTUK INPUT YA PAK
-        cout << "Masukkan Nama Mahasiswa: ";
-        getline(cin, namaMhs);
 
-        cout << "Masukkan NPM: ";
-        cin >> NPM;
-
-        cout << "Masukkan Kode (SI/TI/KA/MI): ";
-        cin >> kodeMhs;
+        cout << "Nama Mahasiswa            : ";
+        getline(cin, namaMahasiswa[jlhMhs]); // Saya menggunakan getline agar tidak terjadi error ketika menginput menggunakan spasi
+        cout << "NPM                       : ";
+        cin >> npm;
+        cout << "Kode Jurusan (SI/TI/KA/MI): ";
+        cin >> kode;
 
         // LOGIKA UNTUK MENCARI JURUSAN, PEMBAYARAN AWAL, JUMLAH CICILAN, DAN BESAR CICILAN
-        if (kodeMhs == "SI" || kodeMhs == "si" || kodeMhs == "Si" || kodeMhs == "sI") {
-            jurusan = "Sistem Informasi";
+        if (kode == "SI" || kode == "si" || kode == "Si" || kode == "sI") {
+            jurusan[jlhMhs] = "Sistem Informasi";
             pembayaranAwal = 2100000;
             jumlahCicilan = 7;
             besarCicilan = 300000;
-        } else if (kodeMhs == "TI" || kodeMhs == "ti" || kodeMhs == "Ti" || kodeMhs == "tI") {
-            jurusan = "Teknik Informatika";
+        } else if (kode == "TI" || kode == "ti" || kode == "Ti" || kode == "tI") {
+            jurusan[jlhMhs] = "Teknik Informatika";
             pembayaranAwal = 2500000;
             jumlahCicilan = 7;
             besarCicilan = 300000;
-        } else if (kodeMhs == "KA" || kodeMhs == "ka" || kodeMhs == "Ka" || kodeMhs == "kA") {
-            jurusan = "Komputer Akutansi";
+        } else if (kode == "KA" || kode == "ka" || kode == "Ka" || kode == "kA") {
+            jurusan[jlhMhs] = "Komputer Akutansi";
             pembayaranAwal = 1750000;
             jumlahCicilan = 6;
             besarCicilan = 200000;
-        } else if (kodeMhs == "MI" || kodeMhs == "mi" || kodeMhs == "Mi" || kodeMhs == "mI") {
-            jurusan = "Manajemen Informatika";
+        } else if (kode == "MI" || kode == "mi" || kode == "Mi" || kode == "mI") {
+            jurusan[jlhMhs] = "Manajemen Informatika";
             pembayaranAwal = 1500000;
             jumlahCicilan = 6;
             besarCicilan = 250000;
@@ -50,44 +48,55 @@ int main() {
             continue;
         }
 
-        // INPUT PEMBAYARAN KE DENGAN MAKSIMAL JUMLAH CICILAN
+        cout << "Jurusan                   : " << jurusan[jlhMhs] << endl;
+        cout << "Pembayaran Awal           : " << pembayaranAwal << endl;
+        cout << "Jumlah Cicilan            : " << jumlahCicilan << endl; 
+        cout << "Besar Cicilan             : " << besarCicilan << endl; 
+        
+		// Input Pembayaran Ke dengan Maksimum Jumlah Cicilan
         do {
-            cout << "Masukkan Pembayaran ke (maksimum " << jumlahCicilan << "): ";
+            cout << "Pembayaran ke (Max " << jumlahCicilan << ")     : ";
             cin >> pembayaranKe;
 
             if (pembayaranKe > jumlahCicilan) {
                 cout << "Pembayaran ke tidak boleh lebih dari " << jumlahCicilan << "! Silakan input lagi." << endl;
             }
         } while (pembayaranKe > jumlahCicilan);
+
+        // Menghitung total uang kuliah
+        uangKuliah[jlhMhs] = pembayaranAwal + (jumlahCicilan * besarCicilan);
+        cout << "Uang Kuliah               : " << uangKuliah[jlhMhs] << endl;
+        
+        // Menghitung uang kuliah terbayar dan sisa uang kuliah
+        uangKuliahTerbayar[jlhMhs] = pembayaranAwal + (pembayaranKe * besarCicilan);
+        sisaUangKuliah[jlhMhs] = uangKuliah[jlhMhs] - uangKuliahTerbayar[jlhMhs];
+
+        cout << "Uang Kuliah Terbayar      : " << uangKuliahTerbayar[jlhMhs] << endl;
+        cout << "Sisa Uang Kuliah          : " << sisaUangKuliah[jlhMhs] << endl;
+
+        jlhMhs++;
+
+        cout << "Masih Ingin Menghitung [Y/T]: ";
+        cin >> lanjut;
+        cin.ignore();  // Agar input pada Nama Mahasiswa tidak dilewatkan
+
+    } while (lanjut == 'Y' || lanjut == 'y');
         cout << endl << "*------------------------------------------*" << endl << endl;
+        
+    cout << "\n+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
+    cout << "| No  | Nama Mahasiswa       | Jurusan                 | Uang Kuliah        | Uang Kuliah Terbayar      | Sisa Uang Kuliah   |" << endl;
+    cout << "+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
 
-        // ARITMATIKA UNTUK MENCARI UANG KULIAH, UANG KULIAH TERBAYAR, DAN SISA UANG KULIAH
-        uangKuliah = pembayaranAwal + (jumlahCicilan * besarCicilan);
-        uangKuliahTerbayar = pembayaranAwal + (pembayaranKe * besarCicilan);
-        sisaUangKuliah = uangKuliah - uangKuliahTerbayar;
+    for (int i = 0; i < jlhMhs; i++) {
+        cout << "| "<< left << setw(3) << i + 1
+             << " | " << left << setw(20) << namaMahasiswa[i]
+             << " | " << left << setw(23) << jurusan[i]
+             << " | " << left << setw(18) << uangKuliah[i]
+             << " | " << left << setw(25) << uangKuliahTerbayar[i]
+             << " | " << left << setw(18) << sisaUangKuliah[i] << " |" << endl;
+    }
 
-        cout << endl;
-        cout << "+-----------------------------------------------+" << endl;
-        cout << "|            PEMBAYARAN UANG KULIAH             |" << endl;
-        cout << "+-----------------------------------------------+" << endl;
-        cout << "| " << left << setw(20) << "Nama Mahasiswa"      << ": " << setw(23) << namaMhs << " |" << endl;
-        cout << "| " << left << setw(20) << "NPM"                << ": " << setw(23) << NPM << " |" << endl;
-        cout << "| " << left << setw(20) << "Kode"               << ": " << setw(23) << kodeMhs << " |" << endl;
-        cout << "| " << left << setw(20) << "Jurusan"            << ": " << setw(23) << jurusan << " |" << endl;
-        cout << "| " << left << setw(20) << "Pembayaran Awal"    << ": " << setw(23) << pembayaranAwal << " |" << endl;
-        cout << "| " << left << setw(20) << "Jumlah Cicilan"     << ": " << setw(23) << jumlahCicilan << " |" << endl;
-        cout << "| " << left << setw(20) << "Besar Cicilan"      << ": " << setw(23) << besarCicilan << " |" << endl;
-        cout << "| " << left << setw(20) << "Pembayaran ke"      << ": " << setw(23) << pembayaranKe << " |" << endl;
-        cout << "| " << left << setw(20) << "Uang Kuliah"        << ": " << setw(23) << uangKuliah << " |" << endl;
-        cout << "| " << left << setw(20) << "Uang Kuliah Terbayar" << ": " << setw(23) << uangKuliahTerbayar << " |" << endl;
-        cout << "| " << left << setw(20) << "Sisa Uang Kuliah"   << ": " << setw(23) <<  sisaUangKuliah << " |" << endl;
-        cout << "+-----------------------------------------------+" << endl;
-
-        cout << "Masih Ingin Menghitung [Y/N]: ";
-        cin >> lagi;
-        cin.ignore(); // Agar input tidak dilewatkan
-
-    } while (lagi == 'y' || lagi == 'Y');
+    cout << "+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
 
     return 0;
 }
