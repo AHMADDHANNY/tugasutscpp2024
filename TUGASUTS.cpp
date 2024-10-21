@@ -17,7 +17,7 @@ int main() {
         cout << "!------------------------------------------!" << endl << endl;
 
         cout << "Nama Mahasiswa            : ";
-        getline(cin, namaMahasiswa[jlhMhs]); // Input menggunakan getline untuk nama mahasiswa
+        getline(cin, namaMahasiswa[jlhMhs]); // Penggunaan getline agar tidak error saat Menginput nama Mahasiswa
         cout << "NPM                       : ";
         cin >> npm;
         cout << "Kode Jurusan (SI/TI/KA/MI): ";
@@ -82,7 +82,6 @@ int main() {
 
     } while ((lanjut == 'Y' || lanjut == 'y') && jlhMhs < maxMahasiswa);
 
-    // Output tabel data mahasiswa
     cout << endl << "*------------------------------------------*" << endl << endl;
     cout << "\n+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
     cout << "| No  | Nama Mahasiswa       | Jurusan                 | Uang Kuliah        | Uang Kuliah Terbayar      | Sisa Uang Kuliah   |" << endl;
