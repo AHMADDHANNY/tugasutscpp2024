@@ -3,26 +3,27 @@
 using namespace std;
 
 int main() {
-    const int maxMahasiswa = 10;
-    string namaMahasiswa[maxMahasiswa],kode, jurusan[maxMahasiswa];
+    const int maxMahasiswa = 50;
+    string namaMahasiswa[maxMahasiswa], kode, jurusan[maxMahasiswa];
     int pembayaranAwal, npm, jumlahCicilan, besarCicilan;
     int pembayaranKe, uangKuliah[maxMahasiswa], uangKuliahTerbayar[maxMahasiswa], sisaUangKuliah[maxMahasiswa];
     int jlhMhs = 0;
     char lanjut;
 
-        cout << "                                        <-------! PUNYA DHANNEYY !-------> :D" << endl;
+    cout << "                                        <-------! PUNYA DHANNEYY !-------> :D" << endl;
+    
     do {
         cout << setprecision(12);
         cout << "!------------------------------------------!" << endl << endl;
 
         cout << "Nama Mahasiswa            : ";
-        getline(cin, namaMahasiswa[jlhMhs]); // Saya menggunakan getline agar tidak terjadi error ketika menginput menggunakan spasi
+        getline(cin, namaMahasiswa[jlhMhs]); // Input menggunakan getline untuk nama mahasiswa
         cout << "NPM                       : ";
         cin >> npm;
         cout << "Kode Jurusan (SI/TI/KA/MI): ";
         cin >> kode;
 
-        // Logika Untuk Mencari Jurusan, Pembayaran Awal, Jumlah Cicilan dan Besar Cicilan
+        // Logika untuk menentukan jurusan, pembayaran awal, jumlah cicilan, dan besar cicilan
         if (kode == "SI" || kode == "si" || kode == "Si" || kode == "sI") {
             jurusan[jlhMhs] = "Sistem Informasi";
             pembayaranAwal = 2100000;
@@ -45,7 +46,6 @@ int main() {
             besarCicilan = 250000;
         } else {
             cout << "Kode tidak valid!" << endl;
-            continue;
         }
 
         cout << "Jurusan                   : " << jurusan[jlhMhs] << endl;
@@ -53,7 +53,7 @@ int main() {
         cout << "Jumlah Cicilan            : " << jumlahCicilan << endl; 
         cout << "Besar Cicilan             : " << besarCicilan << endl; 
         
-		// Input Pembayaran Ke dengan Maksimum Jumlah Cicilan
+        // Input Pembayaran Ke dengan Maksimum Jumlah Cicilan
         do {
             cout << "Pembayaran ke (Max " << jumlahCicilan << ")     : ";
             cin >> pembayaranKe;
@@ -78,16 +78,18 @@ int main() {
 
         cout << "Masih Ingin Menghitung [Y/T]: ";
         cin >> lanjut;
-        cin.ignore();  // Agar input pada Nama Mahasiswa tidak dilewatkan
+        cin.ignore();  // Untuk menghindari masalah dengan input nama mahasiswa di berikutnya
 
-    } while (lanjut == 'Y' || lanjut == 'y');
-        cout << endl << "*------------------------------------------*" << endl << endl;
+    } while ((lanjut == 'Y' || lanjut == 'y') && jlhMhs < maxMahasiswa);
+
+    // Output tabel data mahasiswa
+    cout << endl << "*------------------------------------------*" << endl << endl;
     cout << "\n+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
     cout << "| No  | Nama Mahasiswa       | Jurusan                 | Uang Kuliah        | Uang Kuliah Terbayar      | Sisa Uang Kuliah   |" << endl;
     cout << "+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
 
     for (int i = 0; i < jlhMhs; i++) {
-        cout << "| "<< left << setw(3) << i + 1
+        cout << "| " << left << setw(3) << i + 1
              << " | " << left << setw(20) << namaMahasiswa[i]
              << " | " << left << setw(23) << jurusan[i]
              << " | " << left << setw(18) << uangKuliah[i]
