@@ -80,7 +80,7 @@ int main() {
         cin >> lanjut;
         cin.ignore();  // Untuk menghindari masalah dengan input nama mahasiswa di berikutnya
 
-    } while ((lanjut == 'Y' || lanjut == 'y') && jlhMhs < maxMahasiswa);
+    } while (lanjut == 'Y' || lanjut == 'y');
 
     cout << endl << "*------------------------------------------*" << endl << endl;
     cout << "\n+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
