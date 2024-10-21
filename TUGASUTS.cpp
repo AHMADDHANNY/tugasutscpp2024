@@ -22,7 +22,7 @@ int main() {
         cout << "Kode Jurusan (SI/TI/KA/MI): ";
         cin >> kode;
 
-        // LOGIKA UNTUK MENCARI JURUSAN, PEMBAYARAN AWAL, JUMLAH CICILAN, DAN BESAR CICILAN
+        // Logika Untuk Mencari Jurusan, Pembayaran Awal, Jumlah Cicilan dan Besar Cicilan
         if (kode == "SI" || kode == "si" || kode == "Si" || kode == "sI") {
             jurusan[jlhMhs] = "Sistem Informasi";
             pembayaranAwal = 2100000;
