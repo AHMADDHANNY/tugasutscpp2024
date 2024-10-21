@@ -4,8 +4,8 @@ using namespace std;
 
 int main() {
     const int maxMahasiswa = 10;
-    string namaMahasiswa[maxMahasiswa], npm, kode, jurusan[maxMahasiswa];
-    int pembayaranAwal, jumlahCicilan, besarCicilan;
+    string namaMahasiswa[maxMahasiswa],kode, jurusan[maxMahasiswa];
+    int pembayaranAwal, npm, jumlahCicilan, besarCicilan;
     int pembayaranKe, uangKuliah[maxMahasiswa], uangKuliahTerbayar[maxMahasiswa], sisaUangKuliah[maxMahasiswa];
     int jlhMhs = 0;
     char lanjut;
@@ -82,7 +82,6 @@ int main() {
 
     } while (lanjut == 'Y' || lanjut == 'y');
         cout << endl << "*------------------------------------------*" << endl << endl;
-        
     cout << "\n+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
     cout << "| No  | Nama Mahasiswa       | Jurusan                 | Uang Kuliah        | Uang Kuliah Terbayar      | Sisa Uang Kuliah   |" << endl;
     cout << "+-----+----------------------+-------------------------+--------------------+---------------------------+--------------------+" << endl;
